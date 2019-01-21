@@ -1,0 +1,24 @@
+
+.toDoList {
+    text-align: center;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 450px;
+    height: 500px;
+    background-color: #ccc;
+    border-radius: 3px;
+}
+
+table.center {
+    margin-left:auto;
+    margin-right:auto;
+    border: 1px;
+}
+
+.addingElement td {
+    vertical-align: top;
+}

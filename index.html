@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>toDOList</title>
+
+    <link type="text/css" rel="stylesheet" href="index.css" />
+    <script type="text/javascript" src="index.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="toDoList">
+            <h1>ToDoList</h1>
+            <input type="text" id="taskInput" placeholder="Need to do..." />
+
+            <select id="selectDay">
+                <option value="today">today</option>
+                <option value="tomorrow">tomorrow</option>
+                <option value="nextTime">next time</option>
+            </select>
+            <button id="addTask">add</button>
+            <button id="remTasks">remove</button>
+            <button id="clearTasks">clear</button>
+
+            <table id="toDoListTable" class="center">
+                <tr>
+                    <th>For today</th>
+                    <th>For tomorrow</th>
+                    <th>For next time</th>
+                </tr>
+                <tr class="addingElement">
+                    <td>
+                        <form id="todayList">
+
+                        </form>
+                    </td>
+                    <td>
+                        <form id="tomorrowList">
+
+                        </form>
+                    </td>
+                    <td>
+                        <form id="nextTimeList">
+
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
