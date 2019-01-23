@@ -20,32 +20,39 @@
             </select>
             <button id="addTask">add</button>
             <button id="remTasks">remove</button>
-            <button id="clearTasks">clear</button>
 
             <table id="toDoListTable" class="center">
-                <tr>
-                    <th>For today</th>
-                    <th>For tomorrow</th>
-                    <th>For next time</th>
-                </tr>
-                <tr class="addingElement">
-                    <td>
-                        <form id="todayList">
+                <thead>
+                    <tr>
+                        <th>For today</th>
+                        <th>For tomorrow</th>
+                        <th>For next time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="addingElement">
+                        <td>
+                            <form id="todayList">
 
-                        </form>
-                    </td>
-                    <td>
-                        <form id="tomorrowList">
+                            </form>
+                        </td>
+                        <td>
+                            <form id="tomorrowList">
 
-                        </form>
-                    </td>
-                    <td>
-                        <form id="nextTimeList">
+                            </form>
+                        </td>
+                        <td>
+                            <form id="nextTimeList">
 
-                        </form>
-                    </td>
-                </tr>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
+        </div>
+        <div class="bottomButtons">
+            <button id="clearTasks">Clear</button>
+            <button id="saveTasks">Save</button>
         </div>
     </div>
 </body>

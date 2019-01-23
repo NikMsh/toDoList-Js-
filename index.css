@@ -5,9 +5,9 @@
     text-align: center;
     background-color: #3E3D3D;
     position: fixed;
-    min-width: 500px;
-    width: 35%;
-    height: 68%;
+    min-width: 45%;
+    min-height: 80%;
+    max-height: 80%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -17,12 +17,13 @@
 
 .toDoList {
     margin-bottom: 20px;
+    max-height: 670px;
+    min-height: 670px;
 }
 
 table {
-    width: 100%;
     font-size: 20px;
-    margin-top: 10px ;
+    margin-top: 10px;
 }
 
 table.center {
@@ -60,7 +61,7 @@ button:hover {
 }
 
 form {
-    max-height: 450px;
+    max-height: 500px;
     overflow-y: auto;
 }
 
@@ -78,4 +79,14 @@ form {
 
 .taskDiv:hover {
     background-color: #801313;
+}
+
+
+.bottomButtons {
+    margin-bottom: 20px;
+    margin-left: 70%;
+}
+
+#clearTasks {
+    margin-right: 3%;
 }
