@@ -54,6 +54,7 @@ function clearTasks() {
         let div = document.getElementById("div"+checkboxes[i].id);
         div.parentNode.removeChild(div);
     }
+    document.getElementById("taskInput").value = '';
     localStorage.clear();
 }
 

@@ -6,7 +6,6 @@
     background-color: #3E3D3D;
     position: fixed;
     min-width: 45%;
-    min-height: 80%;
     max-height: 80%;
     top: 50%;
     left: 50%;
@@ -94,7 +93,6 @@ form {
     flex: 0 1 auto;
     padding: 6px;
     border-radius: 5px;
-    margin: 2px;
 }
 
 .taskDiv:hover {
@@ -116,4 +114,42 @@ form {
     background-color: #801313;
     cursor: pointer;
     text-align: center;
+}
+
+@media screen and (max-height: 700px) {
+    .container {
+        height: 100%;
+    }
+    .toDoList {
+        max-height: 380px;
+        min-height: 380px;
+    }
+
+    .bottomButtons {
+        margin-bottom: 10px;
+    }
+
+    form {
+        max-height: 200px;
+        min-height: 200px;
+    }
+}
+
+@media screen and (max-height: 900px) {
+    .container {
+        height: 100%;
+    }
+    .toDoList {
+        max-height: 550px;
+        min-height: 550px;
+    }
+
+    .bottomButtons {
+        margin-bottom: 20px;
+    }
+
+    form {
+        max-height: 360px;
+        min-height: 360px;
+    }
 }
