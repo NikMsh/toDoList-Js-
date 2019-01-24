@@ -5,9 +5,7 @@
     text-align: center;
     background-color: #3E3D3D;
     position: fixed;
-    min-width: 900px;
-    max-width: 900px;
-    max-height: 800px;
+    display: flex;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -16,9 +14,21 @@
 }
 
 .toDoList {
-    margin-bottom: 20px;
     max-height: 670px;
     min-height: 670px;
+    display: flex;
+    flex-flow: column;
+    flex-flow: column;
+}
+
+.taskLists {
+    display: flex;
+    justify-content: space-around;
+}
+
+.listColumn {
+    flex: 2;
+    flex-wrap: wrap;
 }
 
 table {
@@ -80,7 +90,7 @@ form {
 
 .taskDiv {
     display: flex;
-    text-align: center;
+    text-align: left;
     align-items: center;
     border-radius: 5px;
 }
@@ -91,12 +101,12 @@ form {
 }
 
 .taskDiv label {
-    flex: 5;
+    flex: 4;
 }
 
 .taskDiv span {
     flex: 0 1 auto;
-    padding: 6px;
+    padding: 10px;
     border-radius: 5px;
 }
 
@@ -106,14 +116,14 @@ form {
 }
 
 
-.bottomButtons {
-    margin-bottom: 20px;
-    margin-left: 70%;
-}
+/*.bottomButtons {*/
+    /*margin-bottom: 20px;*/
+    /*margin-left: 70%;*/
+/*}*/
 
-#clearTasks {
-    margin-right: 3%;
-}
+/*#clearTasks {*/
+    /*margin-right: 3%;*/
+/*}*/
 
 .closable:hover {
     background-color: #801313;
@@ -121,39 +131,39 @@ form {
     text-align: center;
 }
 
-@media screen and (max-height: 700px) or (max-width: 800px) {
-    .container {
-        height: 400px;
-        min-width: 600px;
-        max-width: 600px;
-    }
-    .toDoList {
-        max-height: 380px;
-        min-height: 380px;
-    }
+/*@media screen and (max-height: 700px) or (max-width: 800px) {*/
+    /*.container {*/
+        /*height: 400px;*/
+        /*min-width: 600px;*/
+        /*max-width: 600px;*/
+    /*}*/
+    /*.toDoList {*/
+        /*max-height: 380px;*/
+        /*min-height: 380px;*/
+    /*}*/
 
-    .bottomButtons {
-        margin-bottom: 10px;
-    }
+    /*.bottomButtons {*/
+        /*margin-bottom: 10px;*/
+    /*}*/
 
-    form {
-        max-height: 200px;
-        min-height: 200px;
-    }
-}
+    /*form {*/
+        /*max-height: 200px;*/
+        /*min-height: 200px;*/
+    /*}*/
+/*}*/
 
-@media screen and (max-height: 900px) {
-    .toDoList {
-        max-height: 550px;
-        min-height: 550px;
-    }
+/*@media screen and (max-height: 900px) {*/
+    /*.toDoList {*/
+        /*max-height: 550px;*/
+        /*min-height: 550px;*/
+    /*}*/
 
-    .bottomButtons {
-        margin-bottom: 20px;
-    }
+    /*.bottomButtons {*/
+        /*margin-bottom: 20px;*/
+    /*}*/
 
-    form {
-        max-height: 360px;
-        min-height: 360px;
-    }
-}
+    /*form {*/
+        /*max-height: 360px;*/
+        /*min-height: 360px;*/
+    /*}*/
+/*}*/
