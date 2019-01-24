@@ -10,16 +10,17 @@
 <body>
     <div class="container">
         <div class="toDoList">
-            <h1>ToDoList</h1>
-            <input type="text" id="taskInput" placeholder="Need to do..." />
-
-            <select id="selectDay">
-                <option value="today">today</option>
-                <option value="tomorrow">tomorrow</option>
-                <option value="nextTime">next time</option>
-            </select>
-            <button id="addTask">add</button>
-            <button id="remTasks">remove</button>
+            <div class="header">
+                <h1>ToDoList</h1>
+                <input type="text" id="taskInput" placeholder="Need to do..." />
+                <select id="selectDay">
+                    <option value="today">today</option>
+                    <option value="tomorrow">tomorrow</option>
+                    <option value="nextTime">next time</option>
+                </select>
+                <button id="addTask">add</button>
+            </div>
+            <!--<button id="remTasks">remove</button>-->
 
             <table id="toDoListTable" class="center">
                 <thead>
@@ -33,7 +34,10 @@
                     <tr class="addingElement">
                         <td>
                             <form id="todayList">
-
+                                <!--<div class="taskDiv">-->
+                                    <!--<input type="checkbox" id="1"/>-->
+                                    <!--<label for="1">Helllo</label>-->
+                                <!--</div>-->
                             </form>
                         </td>
                         <td>
@@ -56,4 +60,5 @@
         </div>
     </div>
 </body>
+
 </html>

@@ -24,6 +24,7 @@
 table {
     font-size: 20px;
     margin-top: 10px;
+    width: 100%;
 }
 
 table.center {
@@ -35,6 +36,14 @@ table.center {
 .addingElement td {
     text-align: left;
     vertical-align: top;
+}
+
+.header input{
+    width: 40%;
+}
+
+.header button{
+    width: 13%;
 }
 
 select, input, button {
@@ -67,18 +76,30 @@ form {
 
 .taskDiv {
     display: flex;
+    text-align: center;
+    align-items: center;
+    border-radius: 5px;
 }
 
 .taskDiv input {
     flex: 1;
+    padding: 5px;
 }
 
 .taskDiv label {
-    flex: 6;
+    flex: 5;
+}
+
+.taskDiv span {
+    flex: 0 1 auto;
+    padding: 6px;
+    border-radius: 5px;
+    margin: 2px;
 }
 
 .taskDiv:hover {
-    background-color: #801313;
+    background-color: #565656;
+    cursor: pointer;
 }
 
 
@@ -89,4 +110,10 @@ form {
 
 #clearTasks {
     margin-right: 3%;
+}
+
+.closable:hover {
+    background-color: #801313;
+    cursor: pointer;
+    text-align: center;
 }

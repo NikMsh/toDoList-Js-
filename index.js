@@ -1,14 +1,13 @@
-const keys = ["todayList", "tomorrowList", "nextTimeList"];
+const KEY_LS = "list";
 
 window.onload = function() {
-
     getDataFromLocalStorage();
 
     document.getElementById('taskInput').addEventListener("keyup", listenInputKeys);
     document.getElementById('addTask').onclick = addItemToList;
-    document.getElementById('remTasks').onclick = removeTasks;
+    //document.getElementById('remTasks').onclick = removeTasks;
     document.getElementById('clearTasks').onclick = clearTasks;
-
+    document.getElementById("saveTasks").onclick = saveTasksToLS;
 };
 
 function addItemToList() {
@@ -22,7 +21,6 @@ function addItemToList() {
 
 
     document.getElementById(listId).appendChild(createItem(taskId, taskName));
-    addDataToLocalStorage(listId, {id: taskId, text: taskName});
 }
 
 function listenInputKeys(event) {
@@ -49,41 +47,6 @@ function listenInputKeys(event) {
 
 }
 
-function removeTasks() {
-    let checkboxes = document.querySelectorAll('#toDoListTable input[type=checkbox]:checked');
-
-    for (let i = 0; i < checkboxes.length; i++) {
-        const objId = checkboxes[i].id;
-        console.log(objId);
-        const div = document.getElementById("div"+ objId);
-        div.parentNode.removeChild(div);
-        remFromLocalStorage(objId);
-    }
-}
-
-function remFromLocalStorage(id) {
-    console.log('working ' + id);
-    const size = keys.length;
-    for (let i=0; i<size; i++) {
-        let array = JSON.parse(localStorage.getItem(keys[i]));
-        if (array===null || array.length === 0) continue ;
-
-        console.log(array);
-        for (let j=0; j<array.length; j++) {
-            console.log(array[j].id + " === " + id);
-            if (array[j].id === id) {
-                console.log("FOUND");
-                array.splice(array[j], 1);
-                console.log("Works! " + array);
-                console.log(JSON.stringify(array));
-                localStorage.setItem(keys[i], JSON.stringify(array));
-                return ;
-            }
-        }
-        //document.getElementById(key).appendChild(fragment);
-    }
-}
-
 function clearTasks() {
     let checkboxes = document.querySelectorAll('#toDoListTable input[type=checkbox]')
 
@@ -95,29 +58,37 @@ function clearTasks() {
 }
 
 function getDataFromLocalStorage() {
-    keys.forEach(function (key) {
-            let array = JSON.parse(localStorage.getItem(key));
-            if (array===null || array.length === 0) return ;
+    let listLS = JSON.parse(localStorage.getItem(KEY_LS));
+    if (listLS===null || listLS.length === 0) return ;
 
-            let fragment = document.createDocumentFragment();
-            for (let i=0; i<array.length; i++) {
-                fragment.appendChild(createItem(array[i].id, array[i].text));
-            }
-            document.getElementById(key).appendChild(fragment);
-        }
-    );
-}
-
-function addDataToLocalStorage(key, item) {
-    let tasks = JSON.parse(localStorage.getItem(key));
-    if (tasks === null) {
-        tasks = [];
+    for (let i=0; i<listLS.length; i++) {
+        document.getElementById(listLS[i].group).appendChild(createItem(listLS[i].id, listLS[i].text, listLS[i].checked));
     }
-    tasks.push(item);
-    localStorage.setItem(key, JSON.stringify(tasks));
 }
 
-function createItem(id, text) {
+function saveTasksToLS() {
+    let checkboxes = document.querySelectorAll('#toDoListTable input[type=checkbox]');
+    if (checkboxes === null || checkboxes.length===0) return ;
+
+    let listLS = [];
+    for (let i=0;i<checkboxes.length;i++) {
+        listLS.push(getObject(checkboxes[i]));
+    }
+    localStorage.setItem(KEY_LS, JSON.stringify(listLS));
+}
+
+function getObject(checkbox) {
+    const div = checkbox.parentElement;
+    const label = div.getElementsByTagName("label");
+    return {
+      id: checkbox.id,
+      text: label[0].innerText,
+      group: div.parentElement.id,
+      checked: checkbox.checked,
+    };
+}
+
+function createItem(id, text, checkedItem) {
     if (text === "" || id==="") return;
 
     let div = document.createElement("div");
@@ -125,19 +96,73 @@ function createItem(id, text) {
     div.className = "taskDiv";
 
     let taskCheckBox = document.createElement("input");
+    taskCheckBox.onclick = addCheckToLs;
     taskCheckBox.type = "checkbox";
     taskCheckBox.id = id;
+    taskCheckBox.checked = checkedItem;
 
     let taskLabel = document.createElement("label");
     taskLabel.htmlFor = id;
     taskLabel.innerText = text;
 
+    let closeSpan = document.createElement("span");
+    closeSpan.className = "closable";
+    closeSpan.innerText = "×";
+    closeSpan.onclick = removeElement;
+
     div.appendChild(taskCheckBox);
     div.appendChild(taskLabel);
+    div.appendChild(closeSpan);
 
     return div;
+}
+
+function removeElement() {
+    let parentElement = this.parentElement;
+    parentElement.parentNode.removeChild(parentElement);
 }
 
 function generateId () {
     return '_' + Math.random().toString(36).substr(2, 9);
 }
+
+function addCheckToLs() {
+    if (this.checked) {
+
+    }
+}
+
+// function removeTasks() {
+//     let checkboxes = document.querySelectorAll('#toDoListTable input[type=checkbox]:checked');
+//
+//     for (let i = 0; i < checkboxes.length; i++) {
+//         const objId = checkboxes[i].id;
+//         console.log(objId);
+//         const div = document.getElementById("div"+ objId);
+//         div.parentNode.removeChild(div);
+//         remFromLocalStorage(objId);
+//     }
+// }
+
+// function remFromLocalStorage(id) {
+//     console.log('working ' + id);
+//     const size = keys.length;
+//     for (let i=0; i<size; i++) {
+//         let array = JSON.parse(localStorage.getItem(keys[i]));
+//         if (array===null || array.length === 0) continue ;
+//
+//         console.log(array);
+//         for (let j=0; j<array.length; j++) {
+//             console.log(array[j].id + " === " + id);
+//             if (array[j].id === id) {
+//                 console.log("FOUND");
+//                 array.splice(array[j], 1);
+//                 console.log("Works! " + array);
+//                 console.log(JSON.stringify(array));
+//                 localStorage.setItem(keys[i], JSON.stringify(array));
+//                 return ;
+//             }
+//         }
+//         //document.getElementById(key).appendChild(fragment);
+//     }
+// }
