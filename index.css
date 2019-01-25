@@ -1,11 +1,16 @@
+body {
+    background-color: #ffffff;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg stroke='%23CCC' stroke-width='0' %3E%3Crect fill='%23F5F5F5' x='-60' y='-60' width='110' height='240'/%3E%3C/g%3E%3C/svg%3E");
+}
 
 .container {
-    color: #CDCDCD;
+    color: #e4f1fe;
     font-family: Elephant, serif;
     text-align: center;
-    background-color: #3E3D3D;
+    background-color: #2c3e50;
     position: fixed;
-    display: flex;
+    min-width: 900px;
+    max-width: 900px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -14,51 +19,78 @@
 }
 
 .toDoList {
-    max-height: 670px;
-    min-height: 670px;
+    min-height: 700px;
+    max-height: 700px;
     display: flex;
     flex-flow: column;
-    flex-flow: column;
+    padding: 20px;
 }
 
 .taskLists {
     display: flex;
     justify-content: space-around;
+    min-height: 540px;
+    overflow-y: auto;
 }
 
 .listColumn {
-    flex: 2;
-    flex-wrap: wrap;
+    width: 30%;
+    max-height: 500px;
+
 }
 
-table {
-    font-size: 20px;
-    margin-top: 10px;
-    width: 100%;
+h3 {
+    justify-content: center;
 }
 
-table.center {
-    margin-left:auto;
-    margin-right:auto;
-    border: 1px;
+.groups {
+    height: 90%;
+    overflow-y: auto;
 }
 
-.addingElement td {
-    vertical-align: top;
+.taskDiv {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.closable {
+    /*padding: 10px;*/
+    padding: 8px;
+}
+
+.taskDiv:hover {
+    background-color: #565656;
+    cursor: pointer;
+}
+
+.taskDiv input:hover  {
+    cursor: pointer;
+}
+
+.taskDiv label:hover  {
+    cursor: pointer;
+}
+
+.closable:hover {
+    background-color: #801313;
+    cursor: pointer;
+    text-align: center;
 }
 
 .header input{
     width: 40%;
 }
 
-.header button{
-    width: 13%;
-}
-
 select, input, button {
     padding: .4em;
     background-color: ghostwhite;
     font-family: Tahoma, serif;
+}
+
+button {
+    width: 13%;
 }
 
 select {
@@ -69,66 +101,8 @@ select:hover {
     border-color: #73ABFE;
 }
 
-th {
-    min-width: 200px;
-    max-width: 200px;
-}
-
-th, td {
-    padding-left: 30px;
-    padding-right: 30px;
-}
-
 button:hover {
-    background-color: #CACACA;
-}
-
-form {
-    max-height: 500px;
-    overflow-y: auto;
-}
-
-.taskDiv {
-    display: flex;
-    text-align: left;
-    align-items: center;
-    border-radius: 5px;
-}
-
-.taskDiv input {
-    flex: 1;
-    padding: 5px;
-}
-
-.taskDiv label {
-    flex: 4;
-}
-
-.taskDiv span {
-    flex: 0 1 auto;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-.taskDiv:hover {
-    background-color: #565656;
-    cursor: pointer;
-}
-
-
-/*.bottomButtons {*/
-    /*margin-bottom: 20px;*/
-    /*margin-left: 70%;*/
-/*}*/
-
-/*#clearTasks {*/
-    /*margin-right: 3%;*/
-/*}*/
-
-.closable:hover {
-    background-color: #801313;
-    cursor: pointer;
-    text-align: center;
+    background-color: #d3d3d3;
 }
 
 /*@media screen and (max-height: 700px) or (max-width: 800px) {*/

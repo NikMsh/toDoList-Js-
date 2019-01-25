@@ -7,7 +7,7 @@ window.onload = function() {
     document.getElementById('addTask').onclick = addItemToList;
     //document.getElementById('remTasks').onclick = removeTasks;
     document.getElementById('clearTasks').onclick = clearTasks;
-    document.getElementById("saveTasks").onclick = saveTasksToLS;
+    document.getElementById('saveTasks').onclick = saveTasksToLS;
 };
 
 function addItemToList() {
@@ -48,7 +48,7 @@ function listenInputKeys(event) {
 }
 
 function clearTasks() {
-    let checkboxes = document.querySelectorAll('#toDoListTable input[type=checkbox]')
+    let checkboxes = document.querySelectorAll('.toDoList input[type=checkbox]')
 
     for (let i = 0; i < checkboxes.length; i++) {
         let div = document.getElementById("div"+checkboxes[i].id);
@@ -68,7 +68,7 @@ function getDataFromLocalStorage() {
 }
 
 function saveTasksToLS() {
-    let checkboxes = document.querySelectorAll('#toDoListTable input[type=checkbox]');
+    let checkboxes = document.querySelectorAll('.toDoList input[type=checkbox]');
     if (checkboxes === null || checkboxes.length===0) return ;
 
     let listLS = [];
@@ -95,15 +95,16 @@ function createItem(id, text, checkedItem) {
     let div = document.createElement("div");
     div.id = "div" + id;
     div.className = "taskDiv";
+    div.onclick = clickOnCheckBox;
 
     let taskCheckBox = document.createElement("input");
-    taskCheckBox.onclick = addCheckToLs;
     taskCheckBox.type = "checkbox";
     taskCheckBox.id = id;
     taskCheckBox.checked = checkedItem;
+    taskCheckBox.onclick = checking;
 
     let taskLabel = document.createElement("label");
-    taskLabel.htmlFor = id;
+    taskLabel.onclick = clickOnCheckBox;
     taskLabel.innerText = text;
 
     let closeSpan = document.createElement("span");
@@ -123,14 +124,17 @@ function removeElement() {
     parentElement.parentNode.removeChild(parentElement);
 }
 
-function generateId () {
-    return '_' + Math.random().toString(36).substr(2, 9);
+function clickOnCheckBox() {
+    let checkbox = this.getElementsByTagName("input");
+    checkbox[0].checked =  !checkbox[0].checked;
 }
 
-function addCheckToLs() {
-    if (this.checked) {
+function checking(event) {
+    event.stopPropagation();
+}
 
-    }
+function generateId () {
+    return '_' + Math.random().toString(36).substr(2, 9);
 }
 
 // function removeTasks() {
