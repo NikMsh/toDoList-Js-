@@ -104,7 +104,6 @@ function createItem(id, text, checkedItem) {
     taskCheckBox.onclick = checking;
 
     let taskLabel = document.createElement("label");
-    taskLabel.onclick = clickOnCheckBox;
     taskLabel.innerText = text;
 
     let closeSpan = document.createElement("span");
@@ -125,8 +124,8 @@ function removeElement() {
 }
 
 function clickOnCheckBox() {
-    let checkbox = this.getElementsByTagName("input");
-    checkbox[0].checked =  !checkbox[0].checked;
+    let checkbox = this.querySelector("input");
+    checkbox.checked =  !checkbox.checked;
 }
 
 function checking(event) {
