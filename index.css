@@ -123,19 +123,3 @@ button:hover {
         min-height: 87%;
     }
 }
-
-/*@media screen and (max-height: 900px) {*/
-    /*.toDoList {*/
-        /*max-height: 550px;*/
-        /*min-height: 550px;*/
-    /*}*/
-
-    /*.bottomButtons {*/
-        /*margin-bottom: 20px;*/
-    /*}*/
-
-    /*form {*/
-        /*max-height: 360px;*/
-        /*min-height: 360px;*/
-    /*}*/
-/*}*/
