@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="container">
-        <div class="toDoList">
+
             <div class="header">
                 <h1>ToDoList</h1>
                 <input type="text" id="taskInput" placeholder="Need to do..." value="" />
@@ -20,41 +20,31 @@
                 </select>
                 <button id="addTask">Add</button>
             </div>
-            <!--<button id="remTasks">remove</button>-->
+        <div class="toDoList">
+            <div class="taskLists">
+                <div class="listColumn">
+                    <h3>Today</h3>
+                    <div class="groups" id="todayList">
 
-            <table id="toDoListTable" class="center">
-                <thead>
-                    <tr>
-                        <th>For today</th>
-                        <th>For tomorrow</th>
-                        <th>For next time</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="addingElement">
-                        <td>
-                            <form id="todayList">
-                                <!--<div class="taskDiv">-->
-                                    <!--<input type="checkbox" id="1"/>-->
-                                    <!--<label for="1">Helllo</label>-->
-                                <!--</div>-->
-                            </form>
-                        </td>
-                        <td>
-                            <form id="tomorrowList">
+                    </div>
+                </div>
 
-                            </form>
-                        </td>
-                        <td>
-                            <form id="nextTimeList">
+                <div class="listColumn">
+                    <h3>Tomorrow</h3>
+                    <div class="groups" id="tomorrowList">
 
-                            </form>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                    </div>
+                </div>
+
+                <div class="listColumn">
+                    <h3>Next day</h3>
+                    <div class="groups" id="nextTimeList">
+
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="bottomButtons">
+        <div class="footer">
             <button id="clearTasks">Clear</button>
             <button id="saveTasks">Save</button>
         </div>
