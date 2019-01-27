@@ -1,11 +1,11 @@
 const KEY_LS = "list";
+let dragSrc;
 
 window.onload = function() {
     getDataFromLocalStorage();
 
     document.getElementById('taskInput').addEventListener("keyup", listenInputKeys);
     document.getElementById('addTask').onclick = addItemToList;
-    //document.getElementById('remTasks').onclick = removeTasks;
     document.getElementById('clearTasks').onclick = clearTasks;
     document.getElementById('saveTasks').onclick = saveTasksToLS;
 };
@@ -48,11 +48,10 @@ function listenInputKeys(event) {
 }
 
 function clearTasks() {
-    let checkboxes = document.querySelectorAll('.toDoList input[type=checkbox]')
+    let divs = document.querySelectorAll('.taskDiv')
 
-    for (let i = 0; i < checkboxes.length; i++) {
-        let div = document.getElementById("div"+checkboxes[i].id);
-        div.parentNode.removeChild(div);
+    for (let i = 0; i < divs.length; i++) {
+        divs[i].parentNode.removeChild(divs[i]);
     }
     document.getElementById("taskInput").value = '';
     localStorage.clear();
@@ -93,9 +92,11 @@ function createItem(id, text, checkedItem) {
     if (text === "" || id==="") return;
 
     let div = document.createElement("div");
-    div.id = "div" + id;
+    //div.id = "div" + id;
     div.className = "taskDiv";
     div.onclick = clickOnCheckBox;
+    div.draggable = true;
+    addDragDropToChild(div);
 
     let taskCheckBox = document.createElement("input");
     taskCheckBox.type = "checkbox";
@@ -126,9 +127,21 @@ function removeElement() {
 function clickOnCheckBox() {
     let checkbox = this.querySelector("input");
     checkbox.checked =  !checkbox.checked;
+    let label = this.querySelector("label");
+    if (checkbox.checked) {
+        label.style.textDecoration = 'line-through';
+    } else {
+        label.style.textDecoration = '';
+    }
 }
 
 function checking(event) {
+    let label = this.parentElement.querySelector('label');
+    if (this.checked) {
+        label.style.textDecoration = 'line-through';
+    } else {
+        label.style.textDecoration = '';
+    }
     event.stopPropagation();
 }
 
@@ -136,37 +149,37 @@ function generateId () {
     return '_' + Math.random().toString(36).substr(2, 9);
 }
 
-// function removeTasks() {
-//     let checkboxes = document.querySelectorAll('#toDoListTable input[type=checkbox]:checked');
-//
-//     for (let i = 0; i < checkboxes.length; i++) {
-//         const objId = checkboxes[i].id;
-//         console.log(objId);
-//         const div = document.getElementById("div"+ objId);
-//         div.parentNode.removeChild(div);
-//         remFromLocalStorage(objId);
-//     }
-// }
+function addDragDropToChild(div) {
+    div.addEventListener('dragstart', dragStart);
+    div.addEventListener('dragenter', dragEnter);
+    div.addEventListener('dragover', dragOver);
+    div.addEventListener('drop', dragDrop);
+    div.addEventListener('dragend', dragEnd);
+}
 
-// function remFromLocalStorage(id) {
-//     console.log('working ' + id);
-//     const size = keys.length;
-//     for (let i=0; i<size; i++) {
-//         let array = JSON.parse(localStorage.getItem(keys[i]));
-//         if (array===null || array.length === 0) continue ;
-//
-//         console.log(array);
-//         for (let j=0; j<array.length; j++) {
-//             console.log(array[j].id + " === " + id);
-//             if (array[j].id === id) {
-//                 console.log("FOUND");
-//                 array.splice(array[j], 1);
-//                 console.log("Works! " + array);
-//                 console.log(JSON.stringify(array));
-//                 localStorage.setItem(keys[i], JSON.stringify(array));
-//                 return ;
-//             }
-//         }
-//         //document.getElementById(key).appendChild(fragment);
-//     }
-// }
+function dragStart(e) {
+    dragSrc = this;
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData("taskDiv", this.innerHTML);
+}
+
+function dragEnter(e) {
+    this.classList.add("over");
+}
+
+function dragOver(e) {
+    e.preventDefault();
+    e.dataTransfer.effectAllowed = 'move';
+}
+
+function dragDrop(e) {
+    if (dragSrc!==this) {
+        dragSrc.innerHTML = this.innerHTML;
+        this.innerHTML = e.dataTransfer.getData("taskDiv");
+    }
+}
+
+function dragEnd(e) {
+    let checkbox = e.getElementsByTagName('input');
+    checkbox.preventDefault();
+}
