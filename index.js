@@ -1,6 +1,7 @@
 const KEY_LS = "list";
 let dragSrc;
 
+
 window.onload = function() {
     getDataFromLocalStorage();
 
@@ -106,6 +107,7 @@ function createItem(id, text, checkedItem) {
 
     let taskLabel = document.createElement("label");
     taskLabel.innerText = text;
+    if (checkedItem) taskLabel.style.textDecoration = 'line-through';
 
     let closeSpan = document.createElement("span");
     closeSpan.className = "closable";
@@ -151,7 +153,6 @@ function generateId () {
 
 function addDragDropToChild(div) {
     div.addEventListener('dragstart', dragStart);
-    div.addEventListener('dragenter', dragEnter);
     div.addEventListener('dragover', dragOver);
     div.addEventListener('drop', dragDrop);
     div.addEventListener('dragend', dragEnd);
@@ -162,11 +163,6 @@ function dragStart(e) {
     e.dataTransfer.effectAllowed = 'move';
     e.dataTransfer.setData("taskDiv", this.innerHTML);
 }
-
-function dragEnter(e) {
-    this.classList.add("over");
-}
-
 function dragOver(e) {
     e.preventDefault();
     e.dataTransfer.effectAllowed = 'move';
@@ -177,9 +173,15 @@ function dragDrop(e) {
         dragSrc.innerHTML = this.innerHTML;
         this.innerHTML = e.dataTransfer.getData("taskDiv");
     }
+    let checkbox = this.getElementsByTagName('input');
+    let span = this.getElementsByClassName('closable');
+    checkbox[0].onclick = checking;
+    span[0].onclick = removeElement;
 }
 
 function dragEnd(e) {
-    let checkbox = e.getElementsByTagName('input');
-    checkbox.preventDefault();
+    let checkbox = this.getElementsByTagName('input');
+    let span = this.getElementsByClassName('closable');
+    checkbox[0].onclick = checking;
+    span[0].onclick = removeElement;
 }
