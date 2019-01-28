@@ -25,10 +25,12 @@ function addItemToList() {
 }
 
 function listenInputKeys(event) {
-    event.preventDefault();
-    if (event.keyCode === 13) {
+    if (event.defaultPrevented) {
+        return;
+    }
+    if (event.key === 'Enter') {
         document.getElementById("addTask").click();
-    } else if (event.keyCode === 40) {
+    } else if (event.key === 'ArrowDown') {
         let select = document.getElementById("selectDay");
         if (select.options.selectedIndex < select.options.length-1)  {
             select.options.selectedIndex++;
@@ -36,7 +38,7 @@ function listenInputKeys(event) {
             select.options.selectedIndex = 0;
         }
 
-    } else if (event.keyCode === 38) {
+    } else if (event.key === 'ArrowUp') {
         let select = document.getElementById("selectDay");
         if (select.options.selectedIndex>0) {
             select.options.selectedIndex--;
@@ -93,7 +95,6 @@ function createItem(id, text, checkedItem) {
     if (text === "" || id==="") return;
 
     let div = document.createElement("div");
-    //div.id = "div" + id;
     div.className = "taskDiv";
     div.onclick = clickOnCheckBox;
     div.draggable = true;
@@ -170,8 +171,15 @@ function dragOver(e) {
 
 function dragDrop(e) {
     if (dragSrc!==this) {
+        let tmpChecking1 = dragSrc.getElementsByTagName("input")[0].checked;
+        let tmpChecking2 = this.getElementsByTagName("input")[0].checked;
+
         dragSrc.innerHTML = this.innerHTML;
+        dragSrc.getElementsByTagName("input")[0].checked = tmpChecking2;
+
         this.innerHTML = e.dataTransfer.getData("taskDiv");
+        this.getElementsByTagName("input")[0].checked = tmpChecking1;
+
     }
     let checkbox = this.getElementsByTagName('input');
     let span = this.getElementsByClassName('closable');
